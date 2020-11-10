@@ -49,6 +49,7 @@ componentWillUnmount() {
       <Header />
       <Switch>
         <Route exact path='/' component={HomePage} />
+        <Route exact path='/crown-clothing' component={HomePage} />
         <Route   path='/shop' component={ShopPage} />
         <Route  path='/signin' render={() => this.props.currentUser ? (<Redirect to='/' />) : (<SignInAndSignUpPage />)} />
         <Route exact path='/checkout' component={CheckoutPage} />
