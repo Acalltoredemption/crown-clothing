@@ -5,7 +5,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in';
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument} from './firebase/firebase.utils';
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user.actions';
 import { selectCurrentUser } from './redux/user.selectors';
@@ -22,6 +22,7 @@ unsubscribeFromAuth = null
 
 componentDidMount(){
   const {setCurrentUser} = this.props;
+
   this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
   if(userAuth) {
     const userRef = await createUserProfileDocument(userAuth);
@@ -35,6 +36,7 @@ componentDidMount(){
   }
 
 setCurrentUser(userAuth);
+
 });
 
 }
@@ -62,7 +64,7 @@ componentWillUnmount() {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
-})
+});
 
 const mapDispatchToProps = dispatch => ({
  setCurrentUser: user => dispatch(setCurrentUser(user))
